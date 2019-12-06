@@ -12,8 +12,26 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    if length <=1:
+        return None
+    
+    else:
+        for i in range(0, len(weights)):
+            current_weight = weights[i]
+            hash_table_insert(ht, current_weight, i)
+        
+        for i in range(0, len(weights)):
+            current_weight = weights[i]
+            target_key_value = limit - current_weight
+            solution = hash_table_retrieve(ht, target_key_value)
 
-    return None
+            if solution:
+                if solution >= i:
+                    return (solution, i)
+                else:
+                    return (i, solution)
+                    
+        return None
 
 
 def print_answer(answer):
